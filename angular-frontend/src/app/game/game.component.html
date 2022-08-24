@@ -1,0 +1,34 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-1 box" *ngFor="let player of playSession.players">
+      <div class="card text-center" [ngClass]="{'current': player.uuid ===playSession.currentPlayerId }">
+        <div class="card-body">
+          <h5>{{ player.name }}</h5>
+          <img  style="height: 20px"src='{{ "assets/" + player.shape + ".png" }}'>
+          <h5>Box : {{ player.currentBox }}</h5>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="this.playSession.winnerPlayerId === null"  class="text-center">
+    <div ng class="card-body">
+      <a class="btn btn-primary btn-lg" (click)="diceRoll()">{{diceButtonLabel}}</a>
+    </div>
+  </div>
+
+  <div class="board">
+    <div>
+      <div  class="container1" *ngFor="let i of cells">
+      <div  class="cell1" *ngFor="let j of i">
+
+        <img  *ngIf="this.getPoint(j, 'hexagon')" style="height: 20px" src="assets/hexagon.png">
+        <img *ngIf="this.getPoint(j, 'square')"  style="height: 20px" src="assets/square.png">
+        <img *ngIf="this.getPoint(j, 'circle')"   style="height: 20px" src="assets/circle.png">
+        <img *ngIf="this.getPoint(j, 'triangle')"  style="height: 20px" src="assets/triangle.png">
+      </div>
+      </div>
+    </div>
+  </div>
+
+</div>
